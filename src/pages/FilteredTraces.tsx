@@ -8,7 +8,7 @@ export default function FilteredTraces() {
   const [filters, setFilters] = useState({
     numSerie: "",
     operation: "",
-    trace: "",
+    traceDesc: "",
     startDate: "",
     endDate: "",
   });
@@ -114,9 +114,9 @@ export default function FilteredTraces() {
           Trace:
           <input
             type="text"
-            value={filters.trace}
+            value={filters?.traceDesc}
             onChange={(e) =>
-              setFilters({ ...filters, trace: e.target.value })
+              setFilters({ ...filters, traceDesc: e.target.value })
             }
           />
         </label>
@@ -180,7 +180,7 @@ export default function FilteredTraces() {
               <tr key={trace._id}>
                 <td>{trace.numSerie}</td>
                 <td>{trace.operation}</td>
-                <td>{trace.trace}</td>
+                <td>{trace?.traceDesc}</td>
                 <td>{new Date(trace.date).toLocaleDateString()}</td>
                 <td>
                   <div className={styles.actions}>
