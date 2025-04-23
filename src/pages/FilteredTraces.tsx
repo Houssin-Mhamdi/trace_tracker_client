@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import API from "../api/api";
 import styles from "../styles/FilteredTraces.module.css";
 

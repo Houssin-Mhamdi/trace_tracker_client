@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import styles from "../styles/Dashboard.module.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [users, setUsers] = useState<any>([]);
