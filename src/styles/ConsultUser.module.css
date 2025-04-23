@@ -1,0 +1,27 @@
+.consult-user {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  strong {
+    color: #4caf50;
+  }
