@@ -39,7 +39,7 @@
   
   button {
     padding: 10px;
-    background-color: #4caf50;
+    background-color: rgb(0,149,244);
     color: white;
     border: none;
     border-radius: 4px;
@@ -49,5 +49,5 @@
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: rgb(0,149,244);
   }
