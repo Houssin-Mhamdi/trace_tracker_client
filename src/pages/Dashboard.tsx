@@ -1,8 +1,8 @@
+import { Button } from "../components/ui/button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import styles from "../styles/Dashboard.module.css";
-
 export default function Dashboard() {
   const [users, setUsers] = useState<any>([]);
   const navigate = useNavigate();
@@ -37,9 +37,14 @@ export default function Dashboard() {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div className="flex justify-between items-center gap-3">
                   {userStored?.role === "admin" && (
-                    <button style={{ backgroundColor: "red", color: "white" }} onClick={() => deleteUser(user._id)}>Delete</button>
+                    <button
+                      style={{ backgroundColor: "red", color: "white" }}
+                      onClick={() => deleteUser(user._id)}
+                    >
+                      Delete
+                    </button>
                   )}
                   {userStored?.role === "admin" && (
                     <button

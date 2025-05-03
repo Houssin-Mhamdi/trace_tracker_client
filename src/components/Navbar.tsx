@@ -13,6 +13,16 @@ export default function Navbar() {
 
   const navigate = useNavigate();
   const isLoggedIn = !!localStorage.getItem("token");
+  let isAdmin = null;
+
+  try {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      isAdmin = JSON.parse(userData);
+    }
+  } catch (error) {
+    console.error("Failed to parse user data from localStorage:", error);
+  }
 
   const handleLogout = () => {
     localStorage.clear();
@@ -24,14 +34,16 @@ export default function Navbar() {
       {isLoggedIn ? (
         <>
           <div className={styles["navbar-links"]}>
-            <Link
-              to="/dashboard"
-              className={`${styles["navbar-link"]} ${
-                activeLink === "dashboard" ? styles.active : ""
-              }`}
-            >
-              Dashboard
-            </Link>
+            {isAdmin?.role === "admin" && (
+              <Link
+                to="/dashboard"
+                className={`${styles["navbar-link"]} ${
+                  activeLink === "dashboard" ? styles.active : ""
+                }`}
+              >
+                Dashboard
+              </Link>
+            )}
             <Link
               to="/create-trace"
               className={`${styles["navbar-link"]} ${
@@ -39,6 +51,22 @@ export default function Navbar() {
               }`}
             >
               Create Trace
+            </Link>
+            <Link
+              to="/create-CreateNumSerie"
+              className={`${styles["navbar-link"]} ${
+                activeLink === "create-CreateNumSerie" ? styles.active : ""
+              }`}
+            >
+              Create NumSerie
+            </Link>
+            <Link
+              to="/create-Operation"
+              className={`${styles["navbar-link"]} ${
+                activeLink === "create-Operation" ? styles.active : ""
+              }`}
+            >
+              Create Operation
             </Link>
             <Link
               to="/traces"

@@ -14,6 +14,8 @@ import FilteredTraces from "./pages/FilteredTraces";
 import CreateTrace from "./pages/CreateTrace";
 import EditTrace from "./pages/EditTrace";
 import { JSX } from "react";
+import CreateNumSerie from "./pages/CreateNumSerie";
+import CreateOperation from "./pages/CreateOperation";
 
 // ProtectedRoute Component
 function ProtectedRoute({ children }: { children: JSX.Element }) {
@@ -64,6 +66,23 @@ function App() {
           element={
             <ProtectedRoute>
               <CreateTrace />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create-CreateNumSerie"
+          element={
+            <ProtectedRoute>
+              <CreateNumSerie />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-Operation"
+          element={
+            <ProtectedRoute>
+              <CreateOperation />
             </ProtectedRoute>
           }
         />

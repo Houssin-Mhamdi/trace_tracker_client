@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/api";
 import styles from "../styles/Form.module.css";
+import sagemCom from "../assets/images.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -24,6 +25,9 @@ export default function Login() {
 
   return (
     <>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={sagemCom} alt="" />
+      </div>
       <form onSubmit={handleLogin} className={styles.form}>
         <h2>Login</h2>
         {error && <p className={styles.error}>{error}</p>}

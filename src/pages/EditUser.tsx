@@ -1,7 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../api/api";
-
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Label } from "../components/ui/label";
+import { Button } from "../components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
+const roles = [
+  { value: "admin", label: "Admin" },
+  { value: "default", label: "Default" },
+  { value: "testeur", label: "Testeur" },
+  { value: "visiteur", label: "Visiteur" },
+];
 export default function EditUser() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -9,7 +29,6 @@ export default function EditUser() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch user details
   const fetchUser = async () => {
     try {
       const res = await API.get(`/users/${id}`);
@@ -25,7 +44,6 @@ export default function EditUser() {
     fetchUser();
   }, [id]);
 
-  // Update user role
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -38,34 +56,38 @@ export default function EditUser() {
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  if (loading) return <p className="text-muted">Loading...</p>;
+  if (error) return <p className="text-red-500 font-medium">Error: {error}</p>;
 
   return (
-    <div className="edit-user">
-      <h2>Edit User</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Role:
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-          >
-            <option value="admin">Admin</option>
-            <option value="default">Default</option>
-            <option value="testeur">Testeur</option>
-            <option value="visiteur">Visiteur</option>
-     
-          </select>
-        </label>
-        <button type="submit">Save Changes</button>
-      </form>
+    <div className="max-w-md mx-auto mt-10">
+      <Card>
+        <CardHeader>
+          <CardTitle>Edit User Role</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="role">Role</Label>
+              <Select value={role} onValueChange={setRole}>
+                <SelectTrigger id="role">
+                  <SelectValue placeholder="Select a role" />
+                </SelectTrigger>
+                <SelectContent>
+                  {roles?.map((roleOption) => (
+                    <SelectItem key={roleOption.value} value={roleOption.value}>
+                      {roleOption.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <Button type="submit" className="w-full">
+              Save Changes
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }

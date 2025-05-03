@@ -8,10 +8,10 @@ export default function EditTrace() {
   const [trace, setTrace] = useState({
     numSerie: "",
     operation: "",
-    trace: "",
+    traceDesc: "",
     date: "",
   });
-
+  console.log("trace", trace);
   // Fetch trace details
   const fetchTrace = async () => {
     try {
@@ -33,7 +33,7 @@ export default function EditTrace() {
     try {
       await API.put(`/traces/${id}`, trace);
       alert("Trace updated successfully!");
-      navigate("/traces"); // Redirect to the filtered traces page
+      navigate("/traces");
     } catch (err) {
       console.error(err);
       alert("Failed to update trace");
@@ -44,30 +44,37 @@ export default function EditTrace() {
     <div className="edit-trace">
       <h2>Edit Trace</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Num Série:
-          <input
-            type="text"
-            value={trace.numSerie}
-            onChange={(e) => setTrace({ ...trace, numSerie: e.target.value })}
-            required
-          />
-        </label>
-        <label>
-          Operation:
-          <input
-            type="text"
-            value={trace.operation}
-            onChange={(e) => setTrace({ ...trace, operation: e.target.value })}
-            required
-          />
-        </label>
+        {trace?.numSerie && (
+          <label>
+            Num Série:
+            <input
+              type="text"
+              value={trace?.numSerie}
+              onChange={(e) => setTrace({ ...trace, numSerie: e.target.value })}
+              required
+            />
+          </label>
+        )}
+        {trace?.operation && (
+          <label>
+            Operation:
+            <input
+              type="text"
+              value={trace?.operation}
+              onChange={(e) =>
+                setTrace({ ...trace, operation: e.target.value })
+              }
+              required
+            />
+          </label>
+        )}
+
         <label>
           Trace:
           <input
             type="text"
-            value={trace.trace}
-            onChange={(e) => setTrace({ ...trace, trace: e.target.value })}
+            value={trace?.traceDesc}
+            onChange={(e) => setTrace({ ...trace, traceDesc: e.target.value })}
             required
           />
         </label>
@@ -75,7 +82,7 @@ export default function EditTrace() {
           Date:
           <input
             type="date"
-            value={trace.date.split("T")[0]} // Format date for input field
+            value={trace?.date?.split("T")[0]} // Format date for input field
             onChange={(e) => setTrace({ ...trace, date: e.target.value })}
             required
           />
