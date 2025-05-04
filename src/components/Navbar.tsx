@@ -44,30 +44,35 @@ export default function Navbar() {
                 Dashboard
               </Link>
             )}
-            <Link
-              to="/create-trace"
-              className={`${styles["navbar-link"]} ${
-                activeLink === "create-trace" ? styles.active : ""
-              }`}
-            >
-              Create Trace
-            </Link>
-            <Link
-              to="/create-CreateNumSerie"
-              className={`${styles["navbar-link"]} ${
-                activeLink === "create-CreateNumSerie" ? styles.active : ""
-              }`}
-            >
-              Create NumSerie
-            </Link>
-            <Link
-              to="/create-Operation"
-              className={`${styles["navbar-link"]} ${
-                activeLink === "create-Operation" ? styles.active : ""
-              }`}
-            >
-              Create Operation
-            </Link>
+
+            {(isAdmin?.role === "admin" || isAdmin?.role === "testeur") && (
+              <>
+                <Link
+                  to="/create-trace"
+                  className={`${styles["navbar-link"]} ${
+                    activeLink === "create-trace" ? styles.active : ""
+                  }`}
+                >
+                  Create Trace
+                </Link>
+                <Link
+                  to="/create-CreateNumSerie"
+                  className={`${styles["navbar-link"]} ${
+                    activeLink === "create-CreateNumSerie" ? styles.active : ""
+                  }`}
+                >
+                  Create NumSerie
+                </Link>
+                <Link
+                  to="/create-Operation"
+                  className={`${styles["navbar-link"]} ${
+                    activeLink === "create-Operation" ? styles.active : ""
+                  }`}
+                >
+                  Create Operation
+                </Link>
+              </>
+            )}
             <Link
               to="/traces"
               className={`${styles["navbar-link"]} ${

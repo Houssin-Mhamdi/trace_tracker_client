@@ -84,6 +84,17 @@ export default function FilteredTraces() {
     }
   };
 
+  let isAdmin = null;
+
+  try {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      isAdmin = JSON.parse(userData);
+    }
+  } catch (error) {
+    console.error("Failed to parse user data from localStorage:", error);
+  }
+
   return (
     <div className={styles["filtered-traces"]}>
       <h2>Filtered Traces</h2>
@@ -143,21 +154,23 @@ export default function FilteredTraces() {
       </form>
 
       {/* File Upload */}
-      <div className={styles["import-excel"]}>
-        <h2>Import Excel File</h2>
-        <form className={styles["upload-form"]} onSubmit={handleSubmit}>
-          <label>
-            Select Excel File:
-            <input
-              type="file"
-              accept=".xlsx, .xls"
-              onChange={handleFileChange}
-            />
-          </label>
-          <button type="submit">Upload</button>
-        </form>
-        {message && <p>{message}</p>}
-      </div>
+      {(isAdmin?.role === "testeur" || isAdmin?.role === "admin") && (
+        <div className={styles["import-excel"]}>
+          <h2>Import Excel File</h2>
+          <form className={styles["upload-form"]} onSubmit={handleSubmit}>
+            <label>
+              Select Excel File:
+              <input
+                type="file"
+                accept=".xlsx, .xls"
+                onChange={handleFileChange}
+              />
+            </label>
+            <button type="submit">Upload</button>
+          </form>
+          {message && <p>{message}</p>}
+        </div>
+      )}
 
       {/* Trace Table */}
       <table className={styles.table}>
@@ -182,23 +195,25 @@ export default function FilteredTraces() {
                 <td>{trace.operation}</td>
                 <td>{trace?.traceDesc}</td>
                 <td>{new Date(trace.date).toLocaleDateString()}</td>
-                <td>
-                  <div className={styles.actions}>
-                    <Link to={`/edit-trace/${trace._id}`}>
+                {(isAdmin?.role === "testeur" || isAdmin?.role === "admin") && (
+                  <td>
+                    <div className={styles.actions}>
+                      <Link to={`/edit-trace/${trace._id}`}>
+                        <button
+                          style={{ backgroundColor: "green", color: "white" }}
+                        >
+                          Edit
+                        </button>
+                      </Link>
                       <button
-                        style={{ backgroundColor: "green", color: "white" }}
+                        style={{ backgroundColor: "red", color: "white" }}
+                        onClick={() => handleDelete(trace._id)}
                       >
-                        Edit
+                        Delete
                       </button>
-                    </Link>
-                    <button
-                      style={{ backgroundColor: "red", color: "white" }}
-                      onClick={() => handleDelete(trace._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
+                    </div>
+                  </td>
+                )}
               </tr>
             ))
           )}
