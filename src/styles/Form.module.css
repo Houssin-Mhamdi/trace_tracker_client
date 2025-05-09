@@ -25,8 +25,10 @@ h2 {
   font-size: 14px;
 }
 
-input[type="email"],
-input[type="password"] {
+input[type="email-address"],
+input[type="password"],
+input[type="name"],
+input[type="surname"] {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -37,7 +39,7 @@ input[type="password"] {
   transition: border-color 0.3s ease;
 }
 
-input[type="email"]:focus,
+input[type="email-address"]:focus,
 input[type="password"]:focus {
   border-color: rgb(0, 149, 244);
   outline: none;
@@ -68,7 +70,7 @@ button:hover {
     font-size: 20px;
   }
 
-  input[type="email"],
+  input[type="email-address"],
   input[type="password"],
   button {
     font-size: 14px;

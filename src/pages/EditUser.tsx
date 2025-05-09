@@ -20,7 +20,7 @@ const roles = [
   { value: "admin", label: "Admin" },
   { value: "default", label: "Default" },
   { value: "testeur", label: "Testeur" },
-  { value: "Tracer", label: "Tracer" },
+  { value: "tracer", label: "Tracer" },
 ];
 export default function EditUser() {
   const { id } = useParams<{ id: string }>();

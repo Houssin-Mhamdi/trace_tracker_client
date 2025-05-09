@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../api/api";
 import styles from "../styles/FilteredTraces.module.css";
 
-export default function FilteredTraces() {
+export default function ImportExcel() {
   const [traces, setTraces] = useState<any[]>([]);
   const [filters, setFilters] = useState({
     numSerie: "",
@@ -100,7 +100,7 @@ export default function FilteredTraces() {
       <h2>Filtered Traces</h2>
 
       {/* Filters */}
-      <form>
+      {/* <form>
         <label>
           Num Série:
           <input
@@ -151,7 +151,7 @@ export default function FilteredTraces() {
             }
           />
         </label>
-      </form>
+      </form> */}
 
       {/* File Upload */}
       {(isAdmin?.role === "testeur" || isAdmin?.role === "admin") && (
@@ -195,7 +195,7 @@ export default function FilteredTraces() {
                 <td>{trace.operation}</td>
                 <td>{trace?.traceDesc}</td>
                 <td>{new Date(trace.date).toLocaleDateString()}</td>
-                {(isAdmin?.role === "testeur" || isAdmin?.role === "admin" || isAdmin?.role === "tracer") && (
+                {(isAdmin?.role === "testeur" || isAdmin?.role === "admin") && (
                   <td>
                     <div className={styles.actions}>
                       <Link to={`/edit-trace/${trace._id}`}>

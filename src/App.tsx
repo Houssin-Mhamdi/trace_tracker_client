@@ -16,6 +16,7 @@ import EditTrace from "./pages/EditTrace";
 import { JSX } from "react";
 import CreateNumSerie from "./pages/CreateNumSerie";
 import CreateOperation from "./pages/CreateOperation";
+import ImportExcel from "./pages/ImportExcel";
 
 // ProtectedRoute Component
 function ProtectedRoute({ children }: { children: JSX.Element }) {
@@ -66,6 +67,14 @@ function App() {
           element={
             <ProtectedRoute>
               <CreateTrace />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/import-excel"
+          element={
+            <ProtectedRoute>
+              <ImportExcel />
             </ProtectedRoute>
           }
         />

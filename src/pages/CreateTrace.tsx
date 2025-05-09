@@ -66,6 +66,7 @@ export default function CreateTrace() {
         </label>
         <button type="submit">Create Trace</button>
       </form>
+      
     </div>
   );
 }

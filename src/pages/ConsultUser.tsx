@@ -24,7 +24,7 @@ export default function ConsultUser() {
     <div className="consult-user">
       <h2>User Details</h2>
       <div>
-        <p><strong>Email:</strong> {user.email}</p>
+        <p><strong>Id:</strong> {user.email}</p>
         <p><strong>Role:</strong> {user.role}</p>
       </div>
     </div>

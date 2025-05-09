@@ -26,7 +26,7 @@ export default function Dashboard() {
       <table>
         <thead>
           <tr>
-            <th>Email</th>
+            <th>ID</th>
             <th>Role</th>
             <th>Actions</th>
           </tr>

@@ -32,8 +32,8 @@ export default function Login() {
         <h2>Login</h2>
         {error && <p className={styles.error}>{error}</p>}
         <input
-          type="email"
-          placeholder="Email"
+          type="email-address"
+          placeholder="ID"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

@@ -41,12 +41,20 @@ export default function Navbar() {
                   activeLink === "dashboard" ? styles.active : ""
                 }`}
               >
-                Dashboard
+                Manage User
               </Link>
             )}
 
             {(isAdmin?.role === "admin" || isAdmin?.role === "testeur") && (
               <>
+                <Link
+                  to="/import-excel"
+                  className={`${styles["navbar-link"]} ${
+                    activeLink === "import-excel" ? styles.active : ""
+                  }`}
+                >
+                  Import Excel
+                </Link>
                 <Link
                   to="/create-trace"
                   className={`${styles["navbar-link"]} ${
@@ -61,7 +69,7 @@ export default function Navbar() {
                     activeLink === "create-CreateNumSerie" ? styles.active : ""
                   }`}
                 >
-                  Create NumSerie
+                  Manage Serial Number
                 </Link>
                 <Link
                   to="/create-Operation"
@@ -69,7 +77,7 @@ export default function Navbar() {
                     activeLink === "create-Operation" ? styles.active : ""
                   }`}
                 >
-                  Create Operation
+                  Manage Operation
                 </Link>
               </>
             )}
